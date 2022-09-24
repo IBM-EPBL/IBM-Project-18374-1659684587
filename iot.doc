@@ -1,0 +1,40 @@
+float tem;
+float v ;
+float v0;
+int led=13;
+int gas;
+int p=7;
+void setup(){
+  pinMode(A0,INPUT);
+  pinMode(A1,INPUT);
+  pinMode(led,OUTPUT);
+  pinMode(p,OUTPUT);
+  Serial.begin(9600);
+}
+void loop(){
+  v=analogRead(A1);
+  v0=(v*5000)/1024;
+  tem=(v0-500)/10;
+  gas=analogRead(A0);
+  if(tem>=80){
+    digitalWrite(led,HIGH);
+  }
+  else{
+    digitalWrite(led,LOW);
+  }
+  if(gas>=100){
+    digitalWrite(p,HIGH);
+  }
+  else{
+    digitalWrite(p,LOW);
+  }
+  Serial.println("in deg=");
+  Serial.println(" ");
+  Serial.println(tem);
+  Serial.println("\t");
+  Serial.println("Gas");
+  Serial.println(" ");
+  Serial.println(gas);
+  Serial.println();
+  delay(100);
+}
